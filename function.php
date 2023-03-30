@@ -32,11 +32,21 @@ function add($data)
     $mesin =        htmlspecialchars($data['mesin']);
     $penggunaan =   htmlspecialchars($data['penggunaan']);
     $leasing =      htmlspecialchars($data['leasing']);
-    $variasi =      htmlspecialchars($data['variasi']);
+    $sum_insured = htmlspecialchars($data['sum_insured']);
+    $tsi = htmlspecialchars($data['tsi']);
+    $jaminan = htmlspecialchars($data['jaminan']);
+    $rscc =   htmlspecialchars(in_array('rscc', $data['perluasan']));
+    $ts =   htmlspecialchars(in_array('ts', $data['perluasan']));
+    $tshfl =   htmlspecialchars(in_array('tshfl', $data['perluasan']));
+    $eqvet =   htmlspecialchars(in_array('eqvet', $data['perluasan']));
+    $tjh =   htmlspecialchars(in_array('tjh', $data['perluasan']));
+    $tjhp =   htmlspecialchars(in_array('tjhp', $data['perluasan']));
+    $pad =   htmlspecialchars(in_array('pad', $data['perluasan']));
+    $pap =   htmlspecialchars(in_array('pap', $data['perluasan']));
 
-    $query = "INSERT INTO data_tertanggung (nama, ktp, alamat, provinsi, kota, kecamatan, kelurahan, kodepos, telp, email, merek, model, plat, rangka, tahun, warna, mesin, penggunaan, leasing, variasi) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    $query = "INSERT INTO data_tertanggung (nama, ktp, alamat, provinsi, kota, kecamatan, kelurahan, kodepos, telp, email, merek, model, plat, rangka, tahun, warna, mesin, penggunaan, leasing, variasi, rscc, ts, tshfl, eqvet, tjh, tjhp, pad, pap) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
     $stmt = mysqli_prepare($conn3, $query);
-    mysqli_stmt_bind_param($stmt, 'ssssssssssssssssssss', $nama, $ktp, $alamat, $provinsi, $kota, $kecamatan, $kelurahan, $kodepos, $telp, $email, $merek, $model, $plat, $rangka, $tahun, $warna, $mesin, $penggunaan, $leasing, $variasi);
+    mysqli_stmt_bind_param($stmt, 'sssssssssssssssssssssssssssssss', $nama, $ktp, $alamat, $provinsi, $kota, $kecamatan, $kelurahan, $kodepos, $telp, $email, $merek, $model, $plat, $rangka, $tahun, $warna, $mesin, $penggunaan, $leasing, $variasi, $rscc, $ts, $tshfl, $eqvet, $tjh, $tjhp, $pad, $pap);
     mysqli_stmt_execute($stmt);
     mysqli_stmt_close($stmt);
     return mysqli_affected_rows($conn3);

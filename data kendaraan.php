@@ -13,32 +13,15 @@ if (isset($_POST['submit'])) {
   $_SESSION['mesin'] = $_POST['mesin'];
   $_SESSION['penggunaan'] = $_POST['penggunaan'];
   $_SESSION['leasing'] = $_POST['leasing'];
-  $_SESSION['variasi'] = $_POST['variasi'];
+  // $_SESSION['variasi'] = $_POST['variasi'];
 
-  $_SESSION['nama'] = $_POST['nama'];
-  $_SESSION['tipe'] = $_POST['tipe'];
-  $_SESSION['harga'] = $_POST['harga'];
+  // $_SESSION['nama'] = $_POST['nama'];
+  // $_SESSION['tipe'] = $_POST['tipe'];
+  // $_SESSION['harga'] = $_POST['harga'];
 
   // call the add function to insert the data to database
-  if (add($_SESSION) > 0) {
-    echo "
-    <script>
-    alert('Data Tersimpan');
-    document.location.href = 'SP3MV.php'
-    </script>
-    ";
-  } else {
-    echo "
-    <script>
-    alert('Data Failed');
-    document.location.href = 'SP3MV.php'
-    </script>
-    ";
-  }
-  // // exit to prevent the rest of the script from running unnecessarily
-  exit;
-}
 
+}
 
 $carQuery = 'SELECT * FROM merek_mobil ORDER BY merek ASC';
 $cars = getCar($carQuery);
@@ -222,11 +205,6 @@ if (isset($_POST['model'])) {
       <div class="col-md-2"></div>
       <input class="col-md-4 btn rounded-5" style="background-color: #ffa41b" type="submit" name="submit" value="Lanjutkan">
     </div>
-    <?php
-    echo "test";
-    echo "<br>";
-    echo var_dump($_SESSION);
-    ?>
     </form>
   </div>
 
