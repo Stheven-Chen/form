@@ -87,7 +87,7 @@ if (isset($_POST['submit'])) {
                 </div>
                 <div class="col-md-6">
                     <label for="tsi" class="form-label">Total Nilai Pertanggungan</label>
-                    <input type="text" class="form-control rounded-4" id="tsi" name="tsi" value="">
+                    <input type="text" class="form-control rounded-4" id="tsi" name="tsi" value="" oninput="formatCurrency(this)">
                 </div>
             </div>
             <div class=" row py-4 px-5">
@@ -160,7 +160,7 @@ if (isset($_POST['submit'])) {
             <!-- button -->
             <div class="row py-5 px-4 justify-content-center">
                 <a href="data kendaraan.php" class="col-md-4 btn btn-primary rounded-5">Kembali</a>
-                <div class="col-md-2"></div>
+                <div class="col-md-2">&nbsp;</div>
                 <input type="submit" class="col-md-4 btn rounded-5" style="background-color: #ffa41b" name="submit">
             </div>
         </form>

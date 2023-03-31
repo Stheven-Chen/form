@@ -209,7 +209,7 @@ if (isset($_POST['model'])) {
     </div>
     <div class="row py-5 px-4 justify-content-center">
       <a href="SP3MV.php " class="col-md-4 btn btn-primary rounded-5">Kembali</a>
-      <div class="col-md-2"></div>
+      <div class="col-md-2">&nbsp;</div>
       <input class="col-md-4 btn rounded-5" style="background-color: #ffa41b" type="submit" name="submit" value="Lanjutkan">
     </div>
     </form>

@@ -184,7 +184,7 @@ $kodePos = getKodePos($kodePosQuery);
                 <!-- Button -->
                 <div class="row py-5 px-4 justify-content-center">
                     <a class="col-md-4 btn btn-primary rounded-5">Kembali</a>
-                    <div class="col-md-2"></div>
+                    <div class="col-md-2">&nbsp;</div>
                     <input type="submit" class="col-md-4 btn rounded-5" style="background-color: #ffa41b" name="submit" value="Lanjutkan">
                 </div>
             </form>
