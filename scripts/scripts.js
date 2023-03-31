@@ -60,7 +60,7 @@ function validasiNomorPlat(input) {
   }
 }
 
-let inputNomorPlat = document.getElementById("plat");
+let inputNomorPlat = document.getElementById("");
 inputNomorPlat.addEventListener("input", function() {
   validasiNomorPlat(this);
 });

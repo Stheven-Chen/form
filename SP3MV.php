@@ -1,5 +1,4 @@
 <?php
-session_start();
 include 'function.php';
 
 if (isset($_POST['submit'])) {
@@ -7,10 +6,27 @@ if (isset($_POST['submit'])) {
     $_SESSION['nama_tertanggung'] = $_POST['nama_tertanggung'];
     $_SESSION['ktp'] = $_POST['KTP'];
     $_SESSION['alamat'] = $_POST['alamat'];
-    $_SESSION['provinsi'] = $_POST['provinsi'];
-    $_SESSION['kota'] = $_POST['kota'];
-    $_SESSION['kecamatan'] = $_POST['kecamatan'];
-    $_SESSION['kelurahan'] = $_POST['kelurahan'];
+    // prov selected
+    $provinsiQuery = "SELECT prov_name FROM provinsi WHERE prov_id = $_POST[provinsi]";
+    $result = mysqli_query($conn, $provinsiQuery);
+    $provinsi = mysqli_fetch_assoc($result);
+    $_SESSION['provinsi'] = $provinsi['prov_name'];
+    //city selected 
+    $kotaQuery = "SELECT city_name FROM kota WHERE city_id = $_POST[kota]";
+    $result = mysqli_query($conn, $kotaQuery);
+    $kota = mysqli_fetch_assoc($result);
+    $_SESSION['kota'] = $kota['city_name'];
+    // district selected
+    $kecamatanQuery = "SELECT dis_name FROM kecamatan WHERE dis_id = $_POST[kecamatan]";
+    $result = mysqli_query($conn, $kecamatanQuery);
+    $kecamatan = mysqli_fetch_assoc($result);
+    $_SESSION['kecamatan'] = $kecamatan['dis_name'];
+    // subdistrict selected
+    $kelurahanQuery = "SELECT subdis_name FROM kelurahan WHERE subdis_id = $_POST[kelurahan]";
+    $result = mysqli_query($conn, $kelurahanQuery);
+    $kelurahan = mysqli_fetch_assoc($result);
+    $_SESSION['kelurahan'] = $kelurahan['subdis_name'];
+    // postal code
     $_SESSION['kodepos'] = $_POST['kodepos'];
     $_SESSION['telp'] = $_POST['telp'];
     $_SESSION['email'] = $_POST['email'];
@@ -173,8 +189,8 @@ $kodePos = getKodePos($kodePosQuery);
                 </div>
             </form>
         </div>
-       
-        
+
+
     </div>
 
 

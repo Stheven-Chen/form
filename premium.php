@@ -1,29 +1,51 @@
 <?php
 include "function.php";
 
-if (isset($_POST['submit'])){
+if (isset($_POST['submit'])) {
+
+    isset($_POST['perluasan']) ? $_SESSION['perluasan'] = $_POST['perluasan'] : $_SESSION['perluasan'] = 'no';
+    !empty($_SESSION['perluasan']) ? $_SESSION['perluasan'] = (array) $_SESSION['perluasan'] :
+
+    $rscc = in_array('rscc', $_SESSION['perluasan']) ? 'ok' : 'tidak';
+    $ts = in_array('ts', $_SESSION['perluasan']) ? 'ok' : 'tidak';
+    $tshfl = in_array('tshfl', $_SESSION['perluasan']) ? 'ok' : 'tidak';
+    $eqvet = in_array('eqvet', $_SESSION['perluasan']) ? 'ok' : 'tidak';
+    $tjh = in_array('tjh', $_SESSION['perluasan']) ? 'ok' : 'tidak';
+    $tjhp = in_array('tjhp', $_SESSION['perluasan']) ? 'ok' : 'tidak';
+    $pad = in_array('pad', $_SESSION['perluasan']) ? 'ok' : 'tidak';
+    $pap = in_array('pap', $_SESSION['perluasan']) ? 'ok' : 'tidak';
+
+
+    $_SESSION['sum_insured'] = $_POST['sum_insured'];
+    $_SESSION['tsi'] = $_POST['tsi'];
+    $_SESSION['jaminan'] = $_POST['jaminan'];
+    
+    
+    // test to check session variable value
+    // header("location: liat.php");
 
 
 
 
     if (add($_SESSION) > 0) {
+        session_unset();
+        session_destroy();
         echo "
         <script>
-        alert('Data Tersimpan');
+        alert('Terima Kasih Data Anda Akan Segera Diproses');
         document.location.href = 'SP3MV.php'
         </script>
         ";
-      } else {
+    } else {
         echo "
         <script>
         alert('Data Failed');
         document.location.href = 'SP3MV.php'
         </script>
         ";
-      }
-      // // exit to prevent the rest of the script from running unnecessarily
-      exit;
-    
+    }
+    // // exit to prevent the rest of the script from running unnecessarily
+    exit;
 }
 
 ?>
@@ -57,89 +79,91 @@ if (isset($_POST['submit'])){
     <!-- Main Box -->
     <div class="container px-0 rounded-3 shadow-lg" style="background-color: #d9d9d9; margin-top: 38px; height: 80%">
         <div class="container text-light rounded-3 text-start pb-1" style="background-color: #0177b9; font-size: 24; font-weight: bold; height: 5%">Coverage</div>
-        <div class="row py-4 px-5">
-            <div class="col-md-6">
-                <label class="form-label" for="sum_insured">Harga Pertanggungan</label>
-                <input class="form-control rounded-4 " type="text" name="sum_insured" id="sum_insured" oninput="formatCurrency(this)">
-            </div>
-            <div class="col-md-6">
-                <label for="tsi" class="form-label">Total Nilai Pertanggungan</label>
-                <input type="text" class="form-control rounded-4" id="tsi" name="tsi" value="">
-            </div>
-        </div>
-        <div class=" row py-4 px-5">
-            <div class="col-md-2">
-                Jenis Pertanggungan:
-            </div>
-            <div class="col-md-2">
-                <input class="form-check-input" type="radio" name="jaminan" id="compre" value="compre" />
-                <label class="form-check-label" for="compre"> &nbsp; <i>Comprehensive</i> </label>
-            </div>
-            <div class="col-md-4"><input class="form-check-input" type="radio" name="jaminan" id="tlo" value="tlo" />
-                <label class="form-check-label" for="tlo"> &nbsp; <i>Total Loss Only</i> </label>
-            </div>
-        </div>
-        <div class="row py-4 px-5">
-            <div class="col-md-2">
-                Perluasan:
-            </div>
-            <div class="col-xs col-sm">
-                <div class="form-check form-check-inline d-flex">
-                    <input class="form-check-input" type="checkbox" name="perluasan[]" id="rscc" value="rscc">
-                    <label class="form-check-label" for="rscc"> &nbsp; Huru-hara (RSCC)</label>
+        <form action="" method="POST">
+            <div class="row py-4 px-5">
+                <div class="col-md-6">
+                    <label class="form-label" for="sum_insured">Harga Pertanggungan</label>
+                    <input class="form-control rounded-4 " type="text" name="sum_insured" id="sum_insured" oninput="formatCurrency(this)">
                 </div>
-                <div class="form-check form-check-inline d-flex">
-                    <input class="form-check-input" type="checkbox" name="perluasan[]" id="ts" value="ts">
-                    <label class="form-check-label" for="ts"><i> &nbsp; Terrorism and Sabotage</i></label>
+                <div class="col-md-6">
+                    <label for="tsi" class="form-label">Total Nilai Pertanggungan</label>
+                    <input type="text" class="form-control rounded-4" id="tsi" name="tsi" value="">
                 </div>
-                <div class="form-check form-check-inline d-flex">
-                    <input class="form-check-input" type="checkbox" name="perluasan[]" id="tshfl" value="">
-                    <label class="form-check-label" for="tshfl" "> &nbsp; Angin Topan, Badai,
+            </div>
+            <div class=" row py-4 px-5">
+                <div class="col-md-2">
+                    Jenis Pertanggungan:
+                </div>
+                <div class="col-md-2">
+                    <input class="form-check-input" type="radio" name="jaminan" id="compre" value="compre" />
+                    <label class="form-check-label" for="compre"> &nbsp; <i>Comprehensive</i> </label>
+                </div>
+                <div class="col-md-4"><input class="form-check-input" type="radio" name="jaminan" id="tlo" value="tlo" />
+                    <label class="form-check-label" for="tlo"> &nbsp; <i>Total Loss Only</i> </label>
+                </div>
+            </div>
+            <div class="row py-4 px-5">
+                <div class="col-md-2">
+                    Perluasan:
+                </div>
+                <div class="col-xs col-sm">
+                    <div class="form-check form-check-inline d-flex">
+                        <input class="form-check-input" type="checkbox" name="perluasan[]" id="rscc" value="rscc">
+                        <label class="form-check-label" for="rscc"> &nbsp; Huru-hara (RSCC)</label>
+                    </div>
+                    <div class="form-check form-check-inline d-flex">
+                        <input class="form-check-input" type="checkbox" name="perluasan[]" id="ts" value="ts">
+                        <label class="form-check-label" for="ts"><i> &nbsp; Terrorism and Sabotage</i></label>
+                    </div>
+                    <div class="form-check form-check-inline d-flex">
+                        <input class="form-check-input" type="checkbox" name="perluasan[]" id="tshfl" value="tshfl">
+                        <label class="form-check-label" for="tshfl" "> &nbsp; Angin Topan, Badai,
                             Hujan Es, Banjir, dan Tanah Longsor</label>
                     </div>
                     <div class=" form-check form-check-inline d-flex">
-                        <input class="form-check-input" type="checkbox" name="perluasan[]" id="eqvet" value="eqvet">
-                        <label class="form-check-label" for="eqvet"> &nbsp; Tsunami, Gempa Bumi,
-                            dan Letusan Gunung Berapi</label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" name="perluasan[]" id="tjh" value="tjh">
-                    <label class="form-check-label" for="tjh"> Tanggung Jawab Hukum
-                        terhadap pihak ketiga limit s.d.</label>
+                            <input class="form-check-input" type="checkbox" name="perluasan[]" id="eqvet" value="eqvet">
+                            <label class="form-check-label" for="eqvet"> &nbsp; Tsunami, Gempa Bumi,
+                                dan Letusan Gunung Berapi</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" name="perluasan[]" id="tjh" value="tjh">
+                        <label class="form-check-label" for="tjh"> Tanggung Jawab Hukum
+                            terhadap pihak ketiga limit s.d.</label>
 
-                    <!-- <select class="form-select rounded-4 " style="display: none;" name="tjh" id="tjh_select">
+                        <!-- <select class="form-select rounded-4 " style="display: none;" name="tjh" id="tjh_select">
                             <option value="25">25Jt</option>
                             <option value="50">50Jt</option>
                             <option value="100">100Jt</option>
                         </select> -->
+                    </div>
+                    <div class="form-check form-check-inline d-flex">
+                        <input class="form-check-input" type="checkbox" name="perluasan[]" id="tjhpa" value="tjhpa">
+                        <label class="form-check-label" for="tjhpa">&nbsp; Tanggung Jawab Hukum
+                            terhadap Penumpang limit s.d.</label>
+                    </div>
+                    <div class="form-check form-check-inline d-flex">
+                        <input class="form-check-input" type="checkbox" name="perluasan[]" id="pad" value="pad">
+                        <label class="form-check-label" for="pad">&nbsp; Kecelakaan Diri Supir
+                            limit s.d.</label>
+                    </div>
+                    <div class="form-check form-check-inline d-flex">
+                        <input class="form-check-input" type="checkbox" name="perluasan[]" id="pap" value="pap">
+                        <label class="form-check-label" for="pap">&nbsp; Kecelakaan Diri Penumpang
+                            limit s.d.</label>
+                    </div>
+
                 </div>
-                <div class="form-check form-check-inline d-flex">
-                    <input class="form-check-input" type="checkbox" name="perluasan[]" id="tjhpa" value="tjhpa">
-                    <label class="form-check-label" for="tjhpa">&nbsp; Tanggung Jawab Hukum
-                        terhadap Penumpang limit s.d.</label>
-                </div>
-                <div class="form-check form-check-inline d-flex">
-                    <input class="form-check-input" type="checkbox" name="perluasan[]" id="pad" value="pad">
-                    <label class="form-check-label" for="pad">&nbsp; Kecelakaan Diri Supir
-                        limit s.d.</label>
-                </div>
-                <div class="form-check form-check-inline d-flex">
-                    <input class="form-check-input" type="checkbox" name="perluasan[]" id="pap" value="pap">
-                    <label class="form-check-label" for="pap">&nbsp; Kecelakaan Diri Penumpang
-                        limit s.d.</label>
-                </div>
+
+
 
             </div>
-
-
-
-        </div>
-        <!-- button -->
-        <div class="row py-5 px-4 justify-content-center">
-            <a href="data kendaraan.php" class="col-md-4 btn btn-primary rounded-5">Kembali</a>
-            <div class="col-md-2"></div>
-            <input type="submit" class="col-md-4 btn rounded-5" style="background-color: #ffa41b" name="submit">
-        </div>
+            <!-- button -->
+            <div class="row py-5 px-4 justify-content-center">
+                <a href="data kendaraan.php" class="col-md-4 btn btn-primary rounded-5">Kembali</a>
+                <div class="col-md-2"></div>
+                <input type="submit" class="col-md-4 btn rounded-5" style="background-color: #ffa41b" name="submit">
+            </div>
+        </form>
     </div>
 
 </div>
@@ -183,8 +207,6 @@ if (isset($_POST['submit'])){
     tjh.addEventListener('change', () => {
         this.muncul();
     })
-
-    
 </script>
 </body>
 

@@ -1,11 +1,18 @@
 <?php
-session_start();
 include "../form/function.php";
 if (isset($_POST['submit'])) {
-//   // save the form data to session
+  //   // save the form data to session
 
-  $_SESSION['merek'] = $_POST['merek'];
-  $_SESSION['model'] = $_POST['model'];
+
+  $merekQuery = "SELECT merek FROM merek_mobil WHERE id = $_POST[merek]";
+  $result = mysqli_query($conn2, $merekQuery);
+  $merek = mysqli_fetch_assoc($result);
+  $_SESSION['merek'] = $merek['merek'];
+  //selected model
+  $modelQuery = "SELECT model FROM model_mobil WHERE id = $_POST[model]";
+  $result = mysqli_query($conn2, $modelQuery);
+  $model = mysqli_fetch_assoc($result);
+  $_SESSION['model'] = $model['model'];
   $_SESSION['plat'] = $_POST['plat'];
   $_SESSION['rangka'] = $_POST['rangka'];
   $_SESSION['tahun'] = $_POST['tahun'];
@@ -13,14 +20,14 @@ if (isset($_POST['submit'])) {
   $_SESSION['mesin'] = $_POST['mesin'];
   $_SESSION['penggunaan'] = $_POST['penggunaan'];
   $_SESSION['leasing'] = $_POST['leasing'];
-  // $_SESSION['variasi'] = $_POST['variasi'];
+  $_SESSION['variasi'] = $_POST['variasi'];
 
   // $_SESSION['nama'] = $_POST['nama'];
   // $_SESSION['tipe'] = $_POST['tipe'];
   // $_SESSION['harga'] = $_POST['harga'];
 
   // call the add function to insert the data to database
-
+  header("location: premium.php");
 }
 
 $carQuery = 'SELECT * FROM merek_mobil ORDER BY merek ASC';
@@ -110,7 +117,7 @@ if (isset($_POST['model'])) {
         <div class="row py-2 px-5">
           <div class="col-md-2">
             <label for="plat">No Polisi</label>
-            <input type="text" class="form-control rounded-4" name="plat" id="plat" >
+            <input type="text" class="form-control rounded-4" name="plat" id="">
           </div>
           <div class="col-md-2">
             <label for="tahun">Usia Kendaraan</label>

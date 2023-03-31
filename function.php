@@ -1,10 +1,11 @@
 <?php
+session_start();
 $host = 'localhost';
 $user = 'root';
 $password = '';
 $db = 'kodepos';
 $db2 = 'mobil';
-$db3 = 'data tertanggung';
+$db3 = 'data_tertanggung';
 
 $conn = mysqli_connect($host, $user, $password, $db);
 $conn2 = mysqli_connect($host, $user, $password, $db2);
@@ -43,12 +44,13 @@ function add($data)
     $tjhp =   htmlspecialchars(in_array('tjhp', $data['perluasan']));
     $pad =   htmlspecialchars(in_array('pad', $data['perluasan']));
     $pap =   htmlspecialchars(in_array('pap', $data['perluasan']));
+    $variasi = htmlspecialchars($data['variasi']);
 
-    $query = "INSERT INTO data_tertanggung (nama, ktp, alamat, provinsi, kota, kecamatan, kelurahan, kodepos, telp, email, merek, model, plat, rangka, tahun, warna, mesin, penggunaan, leasing, variasi, rscc, ts, tshfl, eqvet, tjh, tjhp, pad, pap) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-    $stmt = mysqli_prepare($conn3, $query);
-    mysqli_stmt_bind_param($stmt, 'sssssssssssssssssssssssssssssss', $nama, $ktp, $alamat, $provinsi, $kota, $kecamatan, $kelurahan, $kodepos, $telp, $email, $merek, $model, $plat, $rangka, $tahun, $warna, $mesin, $penggunaan, $leasing, $variasi, $rscc, $ts, $tshfl, $eqvet, $tjh, $tjhp, $pad, $pap);
-    mysqli_stmt_execute($stmt);
-    mysqli_stmt_close($stmt);
+    $query = "INSERT INTO data_tertanggung (nama_tertanggung, NIK, alamat, provinsi, kota, kecamatan, kelurahan, kodepos, telp, email, merek_mobil, model, plat, no_rangka, tahun, warna, mesin, penggunaan, leasing, variasi, harga_pertanggungan, tsi, jaminan, rscc, ts, tshfl, eqvet, tjh, tjhp, pad, pap) VALUES ('$nama', '$ktp', '$alamat', '$provinsi', '$kota', '$kecamatan', '$kelurahan', '$kodepos', '$telp', '$email', '$merek', '$model', '$plat', '$rangka', '$tahun', '$warna', '$mesin', '$penggunaan', '$leasing', '$variasi', '$sum_insured', '$tsi', '$jaminan', '$rscc', '$ts', '$tshfl', '$eqvet', '$tjh', '$tjhp', '$pad', '$pap')";
+
+    mysqli_query($conn3, $query);
+
+
     return mysqli_affected_rows($conn3);
 }
 
