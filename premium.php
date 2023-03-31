@@ -83,11 +83,11 @@ if (isset($_POST['submit'])) {
             <div class="row py-4 px-5">
                 <div class="col-md-6">
                     <label class="form-label" for="sum_insured">Harga Pertanggungan</label>
-                    <input class="form-control rounded-4 " type="text" name="sum_insured" id="sum_insured" oninput="formatCurrency(this)">
+                    <input class="form-control rounded-4 " type="text" name="sum_insured" id="sum_insured" oninput="formatCurrency(this)" required>
                 </div>
                 <div class="col-md-6">
                     <label for="tsi" class="form-label">Total Nilai Pertanggungan</label>
-                    <input type="text" class="form-control rounded-4" id="tsi" name="tsi" value="" oninput="formatCurrency(this)">
+                    <input type="text" class="form-control rounded-4" id="tsi" name="tsi" value="" oninput="formatCurrency(this)" required>
                 </div>
             </div>
             <div class=" row py-4 px-5">
@@ -95,10 +95,11 @@ if (isset($_POST['submit'])) {
                     Jenis Pertanggungan:
                 </div>
                 <div class="col-md-2">
-                    <input class="form-check-input" type="radio" name="jaminan" id="compre" value="compre" />
+                    <input class="form-check-input" type="radio" name="jaminan" id="compre" value="compre" required/>
                     <label class="form-check-label" for="compre"> &nbsp; <i>Comprehensive</i> </label>
                 </div>
-                <div class="col-md-4"><input class="form-check-input" type="radio" name="jaminan" id="tlo" value="tlo" />
+                <div class="col-md-4">
+                    <input class="form-check-input" type="radio" name="jaminan" id="tlo" value="tlo" required/>
                     <label class="form-check-label" for="tlo"> &nbsp; <i>Total Loss Only</i> </label>
                 </div>
             </div>

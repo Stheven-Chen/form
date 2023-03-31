@@ -117,27 +117,27 @@ if (isset($_POST['model'])) {
         <div class="row py-2 px-5">
           <div class="col-md-2">
             <label for="plat">No Polisi</label>
-            <input type="text" class="form-control rounded-4" name="plat" id="">
+            <input type="text" class="form-control rounded-4" name="plat" id="" required>
           </div>
           <div class="col-md-2">
             <label for="tahun">Usia Kendaraan</label>
-            <input type="text" name="tahun" class="form-control rounded-4" />
+            <input type="text" name="tahun" class="form-control rounded-4" required/>
           </div>
           <div class="col-md-2"></div>
           <div class="col-md-4">
             <label for="rangka">No Rangka</label>
-            <input type="text" name="rangka" class="form-control rounded-4" />
+            <input type="text" name="rangka" class="form-control rounded-4" required/>
           </div>
         </div>
         <div class="row py-2 px-5">
           <div class="col-md-4">
             <label for="warna">Warna Kendaraan</label>
-            <input name="warna" id="warna" class="form-control rounded-4 text-center" />
+            <input name="warna" id="warna" class="form-control rounded-4 text-center" required/>
           </div>
           <div class="col-md-2"></div>
           <div class="col-md-4">
             <label for="mesin">No Mesin</label>
-            <input name="mesin" id="mesin" class="form-control rounded-4 text-center" />
+            <input name="mesin" id="mesin" class="form-control rounded-4 text-center" required/>
           </div>
         </div>
         <div class="row py-2 px-5">
@@ -162,11 +162,11 @@ if (isset($_POST['model'])) {
         <div class="row py-4 px-5">
           <label class="col-md-1" for="">Spare Part:</label>
           <div class="form-check py-2 px-5 col-md-1">
-            <input class="form-check-input" type="radio" name="variasi" id="variasi" value="yes" checked onchange="disableTable()" />
+            <input class="form-check-input" type="radio" name="variasi" id="variasi" value="Standar" checked onchange="disableTable()" />
             <label class="form-check-label" for="variasi"> Standar </label>
           </div>
           <div class="form-check py-2 px-5 col-md-1">
-            <input class="form-check-input" type="radio" name="variasi" id="variasi" value="no" onchange="disableTable()" />
+            <input class="form-check-input" type="radio" name="variasi" id="variasi" value="Tidak" onchange="disableTable()" />
             <label class="form-check-label" for="variasi"> Tidak </label>
           </div>
           <div class="col-md-3"></div>

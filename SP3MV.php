@@ -110,17 +110,17 @@ $kodePos = getKodePos($kodePosQuery);
                 <div class="row py-4 px-5">
                     <div class="col-md-6">
                         <label for="nama_tertanggung" class="form-label">Nama Tertanggung</label>
-                        <input type="text" class="form-control rounded-4" id="nama_tertanggung" aria-describedby="nama" name="nama_tertanggung" />
+                        <input type="text" class="form-control rounded-4" id="nama_tertanggung" aria-describedby="nama" name="nama_tertanggung" required/>
                     </div>
                     <div class="col-md-6">
                         <label for="KTP" class="form-label">NIK KTP</label>
-                        <input type="text" class="form-control rounded-4" id="KTP" aria-describedby="ktp" name="KTP" />
+                        <input type="text" class="form-control rounded-4" id="KTP" aria-describedby="ktp" name="KTP" required/>
                     </div>
                 </div>
                 <div class="row py-4 px-5">
                     <div class="col-md-12">
                         <label for="alamat " class="form-label">Alamat Tertanggung</label>
-                        <input type="text" name="alamat" class="form-control rounded-4" id="alamat " aria-describedby=" alamat" />
+                        <input type="text" name="alamat" class="form-control rounded-4" id="alamat " aria-describedby=" alamat" required/>
                     </div>
 
                 </div>
@@ -166,19 +166,19 @@ $kodePos = getKodePos($kodePosQuery);
                     <div class="col-md-2">
                         <label for="kodepos">Kode Pos</label>
 
-                        <input name="kodepos" type="text" class="form-control rounded-4" id="kodepos" value="" />
+                        <input name="kodepos" type="text" class="form-control rounded-4" id="kodepos" value="" required/>
                     </div>
 
                 </div>
                 <div class="row py-4 px-5">
                     <div class="col-md-4">
                         <label for="no telp">No Telp</label>
-                        <input type="text" class="form-control rounded-4" id="no telp" name="telp" />
+                        <input type="text" class="form-control rounded-4" id="no telp" name="telp" required />
                     </div>
                     <div class="col-md-2"></div>
                     <div class="col-md-6">
                         <label for="email">Email</label>
-                        <input type="text" class="form-control rounded-4" id="email" name="email" />
+                        <input type="text" class="form-control rounded-4" id="email" name="email" required />
                     </div>
                 </div>
                 <!-- Button -->
